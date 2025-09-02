@@ -1,12 +1,12 @@
 :root {
-  --ink: #1e293b; /* primary text */
-  --muted: #64748b; /* secondary text */
+  --ink: #370617; /* primary text */
+  --muted: #6a040f; /* secondary text */
   --bg: #f6f7fb; /* page bg */
   --card: #ffffff; /* card bg */
-  --line: #e8ebf2; /* separators */
-  --brand: #2b6cb0; /* royal blue */
-  --accent: #8b5cf6; /* soft violet */
-  --gold: #c9a227; /* luxery accent */
+  --line: #f2e8e8; /* separators */
+  --brand: #d00000; /* royal blue */
+  --accent: #e85d04; /* soft violet */
+  --gold: #e9ecef; /* luxery accent */
 }
 
 body {
@@ -38,8 +38,8 @@ p {
   position: relative;
   padding: 96px 24px 120px;
   text-align: center;
-  color: #fff;
-  background: linear-gradient(to bottom, #0f172a, #1e3a8a, #4338ca);
+  color: #370617;
+  background: linear-gradient(to bottom, #f48c06, #faa307, #ffba08);
   overflow: hidden;
 }
 
@@ -63,7 +63,7 @@ p {
 #about-header p {
   max-width: 780px;
   margin: 0.75rem auto 0;
-  color: #e6e8ff;
+  color: #4e172ad7;
   opacity: 0.95;
 }
 
@@ -76,7 +76,7 @@ p {
 .card {
   background: var(--card);
   border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 10px 30px rgba(42, 15, 15, 0.06);
   border: 1px solid var(--line);
   padding: 32px 28px;
 }
@@ -118,7 +118,7 @@ a[target="_blank"] {
   color: var(--brand);
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px solid rgba(43, 108, 176, 0.3);
+  border-bottom: 1px solid #f48c06;
 }
 /* External link arrow via pseudo-element */
 a[target="_blank"]::after {
@@ -126,8 +126,8 @@ a[target="_blank"]::after {
   font-weight: 600;
 }
 a[target="_blank"]:hover {
-  color: #1d4ed8;
-  border-color: #1d4ed8;
+  color: #f48c06;
+  border-color: #f48c06;
 }
 
 ul.values {
@@ -165,8 +165,8 @@ ul.values li::marker {
   height: 0;
   border-left: 24px solid transparent;
   border-bottom: 24px solid transparent;
-  border-top: 24px solid rgba(139, 92, 246, 0.18);
-  border-right: 24px solid rgba(139, 92, 246, 0.18);
+  border-top: 24px solid #f36170 ;
+  border-right: 24px solid #f36170;
   border-top-right-radius: 14px;
 }
 /* Role badge via attribute selector + pseudo-element */
@@ -177,7 +177,7 @@ ul.values li::marker {
   left: 12px;
   font-size: 0.72rem;
   letter-spacing: 0.4px;
-  background: linear-gradient(90deg, var(--gold), #f5e6a8);
+  background: linear-gradient(90deg, var(--gold), #ffffff);
   color: #2a2a2a;
   padding: 4px 8px;
   border-radius: 999px;
@@ -214,11 +214,12 @@ ul.values li::marker {
 blockquote {
   position: relative;
   margin: 0;
-  background: #f4f7ff;
-  border: 1px dashed #d7dfff;
+  margin-top:20px;
+  background: #fffbf4;
+  border: 1px dashed #fff8d7;
   padding: 22px 24px 24px;
   border-radius: 14px;
-  color: #334155;
+  color: #9d0208;
 }
 /* Quote mark (pseudo-element) */
 blockquote::before {
@@ -226,10 +227,11 @@ blockquote::before {
   position: absolute;
   top: -22px;
   left: 10px;
+  
   font-family: "Playfair Display", serif;
   font-size: 4rem;
   line-height: 1;
-  color: #94a3b8;
+  color: #7c6b5d;
   opacity: 0.35;
 }
 
