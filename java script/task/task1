@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1: Dynamic To-Do List</title>
+    <style>
+        body{
+            display:flex;
+            justify-content:center;
+            height:100vh;
+            align-items: center;
+
+        }
+         .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;       
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 350px;
+         }
+         li {
+            list-style: none;
+            background: #eee;
+            padding: 10px;
+            margin-bottom: 10px;
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>To-Do List</h2>
+    
+        <input type="text" placeholder="Enter task" class="input">
+        <button class="button">Add</button>
+        <ul class="ul"></ul>
+    </div>
+
+    <script>
+        const inp = document.querySelector('.input');
+        const btn = document.querySelector('.button');
+        const ul = document.querySelector('.ul');
+
+        btn.addEventListener('click', () => {
+            if (inp.value.trim() === "") return;
+
+            let li = document.createElement('li');
+
+           
+            let textSpan = document.createElement('span');
+            textSpan.textContent = inp.value;
+
+            let del = document.createElement('button');
+            del.innerText = "Delete";
+            del.classList.add("del");
+
+           
+            let edit = document.createElement('button');
+            edit.innerText = "Edit";
+            edit.classList.add("edit");
+
+            inp.value = "";
+
+            li.appendChild(textSpan);
+            li.appendChild(edit);
+            li.appendChild(del);
+            ul.appendChild(li);
+        });
+
+       
+        ul.addEventListener('click', (e) => {
+
+           
+            if (e.target.classList.contains('del')) {
+                e.target.parentElement.remove();
+            }
+
+        
+            if (e.target.classList.contains('edit')) {
+                let li = e.target.parentElement;
+                let currentText = li.querySelector('span').textContent;
+
+                let updated = prompt("Edit task:", currentText);
+
+                if (updated !== null && updated.trim() !== "") {
+                    li.querySelector('span').textContent = updated;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
