@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Product Filter</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            padding: 30px;
+        }
+
+        /* Buttons */
+        .filter-buttons{
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        button{
+            padding: 15px 25px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            background-color: white;
+            box-shadow: 0 3px 7px rgba(0,0,0,0.2);
+            font-size: 16px;
+            transition: .3s;
+        }
+
+        button:hover{
+            background-color: #2563eb;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        button.active{
+            background-color: #2563eb;
+            color: white;
+        }
+
+        /* Search box */
+        .search-box {
+            margin-bottom: 25px;
+        }
+
+        .search-box input{
+            width: 300px;
+            padding: 12px 18px;
+            border-radius: 25px;
+            border: none;
+            box-shadow: 0 3px 7px rgba(0,0,0,0.15);
+            font-size: 16px;
+            outline: none;
+        }
+
+        /* Cards */
+        .cards{
+            display:flex;
+            flex-wrap: wrap;
+            gap:20px;
+        }
+
+        .items{
+            background: white;
+            width:200px;
+            padding:20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: .3s;
+        }
+
+        .items:hover{
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .items h2{
+            margin: 0;
+            color: #1f2937;
+        }
+
+        .items p{
+            margin-top: 8px;
+            color: #4b5563;
+        }
+    </style>
+</head>
+
+<body>
+
+   
+    <div class="search-box">
+        <input type="text" id="search" placeholder="Search product by name...">
+    </div>
+
+    <div class="filter-buttons">
+        <button class="all active">All</button>
+        <button class="elec">Electronics</button>
+        <button class="clot">Clothing</button>
+    </div>
+
+    <div class="cards"></div>
+
+    <script>
+        const items = [
+            ["maths","book"],["science","book"],["english","book"],
+            ["laptop","Electronics"],["mobile","Electronics"],["tablet","Electronics"],
+            ["shirt","Clothing"],["Tshirt","Clothing"],["jacket","Clothing"],["exam manual",'book']
+        ];
+
+        const div = document.querySelector('.cards');
+        const searchInput = document.querySelector('#search');
+
+        let currentCategory = "All";  
+
+        function display(){
+            let card = "";
+            let text = searchInput.value.toLowerCase();
+
+            items.forEach(item => {
+                let name = item[0].toLowerCase();
+                let category = item[1];
+
+                let matchCategory = (currentCategory === "All" || category === currentCategory);
+                let matchSearch = name.includes(text);
+
+                if(matchCategory && matchSearch){
+                    card += `
+                        <div class="items">
+                            <h2>${item[0]}</h2>
+                            <p>type = ${item[1]}</p>
+                        </div>
+                    `;
+                }
+            });
+
+            div.innerHTML = card;
+        }
+
+        // Buttons
+        const allbtn = document.querySelector('.all'); 
+        const elecbtn = document.querySelector('.elec'); 
+        const clotbtn = document.querySelector('.clot'); 
+
+        function setActive(btn){
+            document.querySelectorAll("button").forEach(b=>b.classList.remove("active"));
+            btn.classList.add("active");
+        }
+
+        allbtn.onclick = ()=>{ currentCategory = "All"; setActive(allbtn); display(); };
+        elecbtn.onclick = ()=>{ currentCategory = "Electronics"; setActive(elecbtn); display(); };
+        clotbtn.onclick = ()=>{ currentCategory = "Clothing"; setActive(clotbtn); display(); };
+
+        // Search filters instantly
+        searchInput.addEventListener("keyup", display);
+
+        display(); // initial
+    </script>
+
+</body>
+</html>
