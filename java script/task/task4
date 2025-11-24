@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation App</title>
+
+    <style>
+        body{
+            height:100vh;
+            margin:0;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:#f4f4f4;
+            font-family:Arial, sans-serif;
+        }
+
+        .container{
+            background:white;
+            padding:25px 45px 25px 25px;
+            width:300px;
+
+            border-radius:10px;
+            box-shadow:0 0 15px rgba(0,0,0,0.2);
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            border:1px solid #aaa;
+            border-radius:5px;
+            font-size:14px;
+        }
+
+        .error-text{
+            color:red;
+            font-size:12px;
+            margin:3px 0 10px 0;
+            display:none;
+        }
+
+        .invalid{
+            border:2px solid red !important;
+        }
+
+        .valid{
+            border:2px solid green !important;
+        }
+
+        button{
+            width:100%;
+            padding:10px;
+            border:none;
+            background:#4a90e2;
+            color:white;
+            font-size:15px;
+            border-radius:5px;
+            cursor:pointer;
+            margin-top:10px;
+        }
+
+        button:hover{
+            background:#357ac8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Registration Form</h2>
+
+        <input type="text" placeholder="Name" id="name">
+        <p class="error-text" id="nameError">Name is required.</p>
+
+        <input type="text" placeholder="Email" id="email">
+        <p class="error-text" id="emailError">Enter a valid email containing '@'.</p>
+
+        <input type="password" placeholder="Password" id="password">
+        <p class="error-text" id="passError">Password must be at least 8 characters.</p>
+
+        <button id="submitBtn">Submit</button>
+    </div>
+
+
+    <script>
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const passInput = document.getElementById("password");
+
+        const nameErr = document.getElementById("nameError");
+        const emailErr = document.getElementById("emailError");
+        const passErr = document.getElementById("passError");
+
+        const btn = document.getElementById("submitBtn");
+
+        btn.addEventListener("click", function(e){
+            e.preventDefault();
+
+            let name = nameInput.value.trim();
+            let email = emailInput.value.trim();
+            let pass = passInput.value.trim();
+
+            // NAME VALIDATION
+            if(name === ""){
+                nameErr.style.display = "block";
+                nameInput.classList.add("invalid");
+                nameInput.classList.remove("valid");
+            } else {
+                nameErr.style.display = "none";
+                nameInput.classList.remove("invalid");
+                nameInput.classList.add("valid");
+            }
+
+           
+            if(!email.includes("@")){
+                emailErr.style.display = "block";
+                emailInput.classList.add("invalid");
+                emailInput.classList.remove("valid");
+            } else {
+                emailErr.style.display = "none";
+                emailInput.classList.remove("invalid");
+                emailInput.classList.add("valid");
+            }
+
+            
+            if(pass.length < 8){
+                passErr.style.display = "block";
+                passInput.classList.add("invalid");
+                passInput.classList.remove("valid");
+            } else {
+                passErr.style.display = "none";
+                passInput.classList.remove("invalid");
+                passInput.classList.add("valid");
+            }
+        });
+    </script>
+
+</body>
+</html>
