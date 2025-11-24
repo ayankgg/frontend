@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2: Live Character Counter</title>
+
+    <style>
+        .green {
+            color: green;
+        }
+        .orange {
+            color: orange;
+        }
+        .red {
+            color: red;
+        }
+
+        textarea {
+            width: 300px;
+            height: 120px;
+            padding: 10px;
+            font-size: 16px;
+        }
+         body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;  
+            align-items: center;     
+            background: #f4f4f4;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            width: 380px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        textarea {
+            width: 300px;
+            height: 120px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>Live Character Counter</h2>
+
+    <textarea class="text" placeholder="Type here..."></textarea>
+    <h3>Characters left: <span class="count">100</span></h3>
+    </div>
+
+    <script>
+        const textarea = document.querySelector('.text');
+        const count = document.querySelector('.count');
+
+        const limit = 100;
+        count.innerText = limit;
+
+        textarea.addEventListener('input', () => {
+            let currentLength = textarea.value.length;
+
+            
+            if (currentLength > limit) {
+                textarea.value = textarea.value.substring(0, limit);
+                currentLength = limit;
+            }
+
+            const remaining = limit - currentLength;
+            count.innerText = remaining;
+
+            
+            count.classList.remove('green', 'orange', 'red');
+
+            
+            if (remaining > 60) {
+                count.classList.add('green');
+            } else if (remaining > 20) {
+                count.classList.add('orange');
+            } else {
+                count.classList.add('red');
+            }
+        });
+    </script>
+
+</body>
+</html>
